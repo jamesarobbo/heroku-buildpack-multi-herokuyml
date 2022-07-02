@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Multi-herokuyml"
+exit 0

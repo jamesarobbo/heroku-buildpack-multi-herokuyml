@@ -1,0 +1,25 @@
+# !/usr/bin/env bash
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+HEROKUYML=$(cat "${ENV_DIR/HEROKUYML")
+
+if [[ -z "${HEROKUYML}" ]]; then
+  echo "HEROKUYML was not set. Aborting" | indent
+  exit 1
+fi
+
+cp "${BUILD_DIR}/${HEROKUYML}" "${BUILD_DIR}/heroku.yml"
+
+if ! [ $? ]; then
+  echo "FAILED to copy heroku.yml" | indent
+  exit 1
+fi
+
+echo "Copied ${HEROKUYML} as heroku.yml successfully" | indent 
